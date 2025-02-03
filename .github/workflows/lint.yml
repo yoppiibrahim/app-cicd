@@ -1,28 +1,36 @@
-# This is file Github Actions Workflow..!!
+# This is Github Actions Workflow..!!
 
-name: Lint Workflow
+name: App Workflow
 
 on: 
-  push: 
+  push:
     branches: [ "main" ]
-  pull_request: 
+  pull_request:
     branches: [ "main" ]
 
 permissions:
   contents: read
 
-jobs:
+jobs: 
 
 
-  lint: 
+  build: 
     runs-on: ubuntu-latest
 
     steps:
     - name: Checkout repository
       uses: actions/checkout@v4
     
-    - name: Build Application
-      uses: ./.github/actions/build_application
+    - name: Set up Python 3.12.7
+      uses: actions/setup-python@v5
+      with:
+        python-version: "3.12.7"
+
+    - name: Install Poetry
+      uses: snok/install-poetry@v1
+
+    - name: Install dependencies using poetry
+      run: poetry run make install
 
     - name: Lint with flake8
       run: poetry run make check
