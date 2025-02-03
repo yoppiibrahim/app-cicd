@@ -1,6 +1,6 @@
 # This is Github Actions Workflow..!!
 
-name: App workflow
+name: Lint Workflow
 
 on: 
   push:
