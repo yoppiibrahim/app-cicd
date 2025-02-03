@@ -1,18 +1,9 @@
 # This is Github Actions Workflow..!!
 
-name: App workflow
+name: Build Application
 
-on: 
-  push:
-    branches: [ "main" ]
-  pull_request: 
-    branches: [ "main" ]
-
-permissions: 
-  contents: read
-
-jobs:
-
+runs:
+  using: composite
 
   build:
     runs-on: ubuntu-latest
@@ -41,6 +32,3 @@ jobs:
     - name: Install dependencies using poetry
       if: steps.cached-poetry-dependencies.output.cache-hit != 'true'
       run: poetry run make install
-
-    - name: Lint with flake8
-      run: poetry run make check
