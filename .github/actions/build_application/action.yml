@@ -3,8 +3,8 @@
 name: Build Application
 
 runs:
-  uses: composite
-  
+  using: composite
+
   steps:
   - name: Checkout repository
     uses: actions/checkout@v4
